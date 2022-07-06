@@ -1,5 +1,4 @@
-import {newsAPI} from '../../utilities/index.js';
-$ console.log(newsAPI);
+import {search} from '../../utilities/index.js'; 
 class {
   onCreate() {
     this.state = {
@@ -10,17 +9,7 @@ class {
     
   }
   onMount() {
-    newsAPI.search().then(data => {
-      this.setState({
-        isLoading: false,
-        data: data,
-      });
-    }).catch(error => {
-      this.setState({
-        isLoading: false,
-        isError: true,
-      });
-    });
+    search().then(data => console.log(data))
   }
 }
 
