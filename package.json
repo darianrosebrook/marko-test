@@ -1,0 +1,27 @@
+{
+	"name": "marko-test",
+	"version": "1.0.0",
+	"description": "A coding challenge for Ebay",
+	"scripts": {
+		"build": "marko-build ./src/pages",
+		"dev": "marko-serve ./src/pages",
+		"start": "NODE_ENV=production node ./build/index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/darianrosebrook/marko-test.git"
+	},
+	"dependencies": {
+		"marko": "^5.21.2"
+	},
+	"devDependencies": {
+		"@marko/build": "^4",
+		"@marko/serve": "^4",
+		"eslint": "^8.19.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-prettier": "^4.2.1",
+		"prettier": "^2.7.1",
+		"sass": "^1.53.0",
+		"sass-loader": "^13.0.2"
+	}
+}
