@@ -17,6 +17,8 @@
 	"devDependencies": {
 		"@marko/build": "^4",
 		"@marko/serve": "^4",
+		"dotenv": "^16.0.1",
+		"dotenv-webpack": "^7.1.1",
 		"eslint": "^8.19.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-prettier": "^4.2.1",

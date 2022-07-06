@@ -1,0 +1,37 @@
+import {newsAPI} from '../../utilities/index.js';
+$ console.log(newsAPI);
+class {
+  onCreate() {
+    this.state = {
+      isLoading: true,
+      isError: false,
+      data: [],
+    };
+    
+  }
+  onMount() {
+    newsAPI.search().then(data => {
+      this.setState({
+        isLoading: false,
+        data: data,
+      });
+    }).catch(error => {
+      this.setState({
+        isLoading: false,
+        isError: true,
+      });
+    });
+  }
+}
+
+
+<div.search>
+    ${JSON.stringify( state.data)}
+</div>
+
+style {
+  .search{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  }
+}
