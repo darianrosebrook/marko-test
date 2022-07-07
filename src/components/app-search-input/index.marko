@@ -1,0 +1,39 @@
+class { 
+  onCreate() {
+    this.state = {
+       value: '',
+    };   
+  }  
+  // simple debounce to prevent rate limiting (even though testing it, i got rate limited)
+  debounce(fn, delay) {
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
+    this.timer = setTimeout(fn, delay);
+  } 
+  handleInput(e) {   
+    this.debounce(() => this.emit("app-search", e.target.value), 500);
+  } 
+}
+
+<div.search-input >
+  <label for="search">See what's new with... 🔎</label>
+  <input  name="search" on-input('handleInput') type="search" placeholder="Search" value=state?.value ? state.value : 'EBay'/> 
+</div>  
+
+style { 
+  .search-input{
+     display: flex;
+     flex-direction: column;
+     width: auto;
+    }
+   label {
+     color: var(--secondary-text);
+   } 
+   @media (min-width: 800px) {
+     .search-input {
+       flex-direction: row;
+       align-items: center;
+     }
+   }
+}

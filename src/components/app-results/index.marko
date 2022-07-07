@@ -1,0 +1,91 @@
+ 
+ 
+<div.search-results>   
+  <for|gif| of=input.gifs> 
+  <!-- This is a very repeatable part of code which would make a nice component with it's own api -->
+    <article.article><a href=gif.url> 
+      <div.image style=`background-image:url('${gif.images.downsized_medium.url}');`> 
+      </div>
+      <div>
+        <h6.author>${gif.author}</h6>
+        <h5.article-title>${gif.title}</h5>
+      </div>
+      <div.article-description>
+        <div.meta-text>
+          <h6.article-source>Source</h6>
+          <h6.date>By</h6>
+          <h6.answer>${gif.source_tld}</h6>
+          <h6.answer>${gif.username}</h6>
+        </div>  
+      </div> 
+      </a>
+    </article>
+  <!--  -->
+  </for> 
+</div>  
+
+style { 
+  .search-results { 
+    margin: 0 auto 128px auto; 
+    padding: 256px 0 184px 0;
+    width: 100%;
+    height: calc(100vh - 128px  - 64px);
+    overflow-y: auto;
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-auto-rows: minmax(min-content, max-content);
+    grid-gap: var(--du-2);
+  } 
+  .search-results:after {
+    content: '';
+    position: absolute;
+    bottom: 184px;
+    left: 0;
+    width: 100%; 
+    height: 128px;
+    background: linear-gradient(to bottom, rgba(240, 240, 240, 0) 25%, rgba(240, 240, 240, 1) 100%);
+  }
+  article {
+    background: var(--neutral-layer-l0);
+    border-radius: var(--du-2);
+    padding: var(--du-4);
+    height: auto;
+    
+  }
+  .image {
+    width: 100%;
+    padding-bottom: 75%;
+    border-radius: var(--design-unit);
+    overflow: hidden;
+    background-size: cover;
+  } 
+  .article:hover {
+    box-shadow: 0px calc(var(--depth, 8) * 0.25px)
+			calc(var(--depth, 8) * 0.75px) rgba(17, 17, 17, 0.08),
+		0px calc(var(--depth, 8) * 0.125px) calc(var(--depth, 8) * 0.25px)
+			rgba(17, 17, 17, 0.04);
+  }
+  .article a{
+    color: var(--text);
+    display: grid;
+    gap: var(--du-2);
+  }
+  .article-source, .author, .date {
+    color: var(	--secondary-text);
+  }
+  .article-description {
+  }
+  .meta-text {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--du-2);
+    background: var(--neutral-layer-l2);
+    border-radius: var(--du-2);
+    padding: var(--du-4) var(--du-3) ;
+  }
+  @media (min-width: 400px) {
+    .search-results {
+    padding: 184px 0;
+    }
+  }
+}

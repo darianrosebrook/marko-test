@@ -1,11 +1,39 @@
-<div>
-  <app-navigation navTitle=input.navTitle> 
-  </app-navigation>
-  <app-search ></app-search>
-</div>
+class {
+  handleSearch(e) { 
+    this.emit("app-search", e )
+  }
+}
+<nav> 
+  <h1>${input.navTitle}</h1>
+  <app-search-input on-app-search('handleSearch')></app-search-input>
+</nav>
 
-style {
- app-search {
-    max-width: 4em;
+style {  
+  nav { 
+    z-index: 1;
+    display: grid;
+    position: fixed;
+    right: 50%;
+    top: var(--du-8);
+    transform: translateX(50%); 
+    padding: var(--du-4) var(--du-3);
+    width: 96%;
+    grid-template-columns: 1fr;
+    gap: var(--du-4);
+    background: var(--neutral-layer-l0);
+    border-radius: var(--du-2);
+    padding: var(--du-8);  
+    align-items: center;
+  }
+  h1 {
+    font-size: var(--du-6);
+    font-weight: var(--font-weight-bold); 
+    margin: 0;
+  }
+  @media (min-width: 600px) {
+    nav {
+      width: 80%; 
+      grid-template-columns: 1fr auto; 
+    }
   }
 }

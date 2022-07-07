@@ -1,3 +1,54 @@
-<app-layout title="Search News">
-   
-</app-layout>
+import {search} from '../../utilities/';
+import {giphy} from '../../utilities/giphy-test-data.js';
+
+<!-- // I was going to have this configurable to work with both news and giphy, but I only had time to do giphy -->
+class {
+  onCreate() {
+    // setting the state of the component with defaults
+   this.state = { 
+    gifs: [],
+    params: { 
+      q: 'Ebay', 
+      // I am only setting the limit up for the test, this can be iterated on to allow a lot more gifs to be returned depending on capabilities
+      limit: 24, 
+      rating: 'g',
+    }
+   }
+  }
+  onMount() { 
+    // fetching the data from the api for the default search, can be updated by searching
+    this.getData('everything', this.state.params); 
+  } 
+  handleSearch(e) {  
+    // This is run any time the input changes (after debouncing of course)
+    this.state.params = {
+      ...this.state.params,
+      q: e 
+    };
+    this.getData('everything', this.state.params);
+  }
+  getData = (path, params) => {  
+    // Path is useful if we switch out for the news API (before I hit my rate limit on accident)
+    const terms = {
+      path,
+      params,
+    }
+    // simple try catch on this fetch
+    try {  
+      const data = search(terms).then(data => {
+        this.state.gifs = [...data.data];
+      });  
+    } catch (error) {
+      console.log('error', error)
+      this.state = {
+        isLoading: false,
+        isError: true,
+      };
+    } 
+  }
+}
+<app-template title="Search Giphy" >
+  <app-header navTitle="Search Giphy" on-app-search('handleSearch') ></app-header>   
+  <app-results gifs=state.gifs></app-results>
+  <app-footer></app-footer> 
+</app-template> 
